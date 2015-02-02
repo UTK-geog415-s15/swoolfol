@@ -1,0 +1,80 @@
+---
+title: "Lab 1"
+author: "Shannon Woolfolk"
+date: "January 26, 2015"
+output: html_document
+---
+# INSTRUCTIONS:
+Edit this file by replacing the instructions with text and code to anser the questions.
+I should be able to knit this file and reproduce the html, pdf, or word document.
+
+A block to load in the data:
+```{r}
+library(ggplot2)
+
+# Clean the workspace to be empty
+arbuthnot <- read.csv(file='C:/Users/Shannon/Documents/GEOG 415/swoolfol/homework1/data/arbuthnot.csv')
+```
+# Question 1
+This is a question about how the axes affects how we interpret plots.
+
+Create two plots of Male-Female Christenings, one in which the y-axis scale is set by default, and one in which the y-axis extends all the way to zero.  Yes, I know that was in the tutorial.  I want to see it here.
+```{r}
+ggplot(data=arbuthnot) + geom_line(aes(x=Year, y=Males, color='Males')) + geom_line(aes(x=Year, y=Females, color='Females')) + labs(y='Christenings',color="Sex")
+
+ggplot(data=arbuthnot) + geom_line(aes(x=Year, y=Males, color='Males')) + geom_line(aes(x=Year, y=Females, color='Females')) + labs(y='Christenings', color='Sex') + scale_y_continuous(limits=c(0, 10000))                                                                                                                                                               
+```
+
+ - Describe the visual appearance of the two plots.  Do they "feel" like they describe the same data?  
+ - Describe how you might be able to mislead readers by changing the scaling on graphs.  
+ - Which plot seems more appropriate here?  Why?
+  
+```{r}
+#The plot of the default Y-scale is very dramatic with steep slopes. In the plot of the Y-scale starting at zero, the data line seems "flatter," less dramatic. The two plots certainly share similarities, but the plot with the default Y-scale seems to represent an exaggerated rapidly growing, male-dominated population.
+
+#A small scale, such as the default scale, might lead readers to interpret more dramatic meanings from the data than is realisticly accurate. A large scale, such as zero to 10,000 or zero to 100,000, flattens out the data line and might inhibit readers from accurately interpreting the data, because it would appear as little to no change in christenings nor difference between male and female.
+
+#Because the focus of this plot is the number of males vs. number of females christened, it would be more appropriate to have a small scale, so that the space between the male/female data lines is obvious and the number of christenings can be clearly defined.
+```
+
+# Question 2
+This question is designed to give you some practice with ggplot as well as describing plots in words.
+
+Use ggplot to create a scatterplot that has Female christenings on the x-axis and Male christenings on the y-axis.  Draw a 45 degree line (using geom_abline) to show the line where Male and Female christenings are equal.  Use this figure to describe the relationship and distribution of Male and Female christenings.
+```{r}
+ggplot(data=arbuthnot) + geom_point(aes(x=Females, y=Males)) + ylab('Male Christenings') + xlab('Female Christenings') + geom_abline(intercept=0, slope=1)
+#The line shows us where the male and female christenings ratio would be equal, also interpreted as 1. Because the dots favor the male side of the line, we know that the male and female christenings ratio is skewed to more males being christened than females. For example, at 4000 christenings, the dot would be right on the line if the ratio was 1:1, but the dot is above the line, so we know more males were christened than females in a sample population of 4000. We can also gather from this plot that even with an increase in the number of christenings, the general ratio of more males over females stays consistent, though there is some variation in the exact ratio numbers. 
+```
+
+# Question 3
+
+This is a question about population, sample, representativeness and generalizability.
+
+How do you think the christenings-based sample would compared to a births-based sample?  Similar?  Different?  Why?  Arbuthnot's data probably included most every christening in London during this period; they probably aren't any unreported christenings.  Is this fact important?  Why or why not?  Would a christenings based sample be appropriate now, in the 21st century?  (Hint, this last question is trickier than it might seem.  Think about what causes Male/Female Births, what causes people to christen their children, and any relations or not between these)
+  
+```{r}
+#I think there is not enough information or context to decide whether or not a birth-based sample would differ from the christenings-based sample. I would hope that there is not much difference. However, I do not know much about birthing issues, for example, the possibility that girls might have a greater risk of stillbirth or infant death than boys or vice versa. Such a scenario would make a christenings-based sample different from a births-based sample (although this even depends on how "birth" is defined). Also, social issues of the time could affect the data. For example, if there existed a prejudice against girls and female newborns were dispatched or abandoned, the birth-based data would be very different from the christenings-based data. It is important that Arbuthnot included most every christening, because a greater sample population provides a better representation of the true population. I would guess, in the 21st century, christenings are not as commonplace as they were in London during Arbuthnot's time, and therefore may provide a smaller sample population in relation to the true population. However, the sex of a newborn is not relevant to whether or not he or she is christened, and so taking a christening-based sample in the 21st century should still provide a decent representation of birth sex ratios of the greater population.
+```
+
+# Question 4
+What does "sex ratio at birth" mean?  How does it depend on biology, culture and technology.  Consider the three cases of 1) late 17th century England, 2) 21st century US, and China under the [one-child policy](http://en.wikipedia.org/wiki/One-child_policy).
+```{r}
+#Sex ratio at birth is the number of males born to the number of females born. Biologically, the sex ratio at birth favors males. The sperm carrying the XY chromosome are heavier and swim faster. Culturally, males are preferred in many regions around the world, spurring gendercide. Technologically, we are now in a place where the sex of a child can be chosen and "fixed," which could possibly change birth sex ratios. Late 17th century England provided a christening-based sex ratio that is pretty close to the biologically natural 1.06 males/female (Wikipedia). The United States ratio is currently 1.05 (Wikipedia). Since it is close to the biological trend, this is probably a sustainable ratio. I think that the ratio should be closely monitored in the U.S. now that parents can choose the sex of their baby. I would guess though, in western culture, there will be a healthy diversity of girls vs. boys voluntarily selected. Unfortunately, not all cultures value female babies as much as males. China is guilty for harboring this kind of female-prejudiced culture. While I commend China for attempting to slow their population growth, their one-child policy has resulted in a skewed sex ratio at birth, because female fetuses are often aborted or female births are unreported. Their sex ratio at birth is now roughly 117:100 (Wikipedia).
+```
+
+
+# Question 5
+The purpose of this question is to give you a little practice using standard deviation.
+
+a. The average height of young women ages 18-24 is 64.5 in.  The distribution of heights is approximately normal (Gaussian) with a standardard deviation of $\sigma=2.5$.  Complete this sentence: Approximately 95% of women have a height greater than `r 64.5 - (2.5*2)` in and less than `r 64.5 + (2.5*2)` in.
+
+# Question 6
+The purpose of this question is to help you understand the variance.
+
+The formula for sample variance $\sigma^2$ of a dataset is:
+$$\frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N-1}$$
+Describe in words what each part of this equation is, and using the concept of "distance" describe what the sample variance measures.
+```{r}
+#In the sample variance formula, capital sigma represents the sum of distances that data values (x_i) are from the mean (x bar), and the differences are squared before being summated. This number represented by capital sigma is divided by the population number, or the population number minus one in the case of a sample variance. Then we have the sample variance, which measures the average of the squared distances from the mean.
+```
+
