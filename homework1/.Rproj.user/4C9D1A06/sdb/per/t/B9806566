@@ -1,0 +1,16 @@
+{
+    "contents" : "#### -- Packrat Autoloader (version 0.4.2) -- ####\n#source(\"packrat/init.R\")\n#### -- End Packrat Autoloader -- ####\n",
+    "created" : 1422281075859.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3995357098",
+    "id" : "B9806566",
+    "lastKnownWriteTime" : 1422281086,
+    "path" : "~/Dropbox/git_root/homework/homework1/.Rprofile",
+    "project_path" : ".Rprofile",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

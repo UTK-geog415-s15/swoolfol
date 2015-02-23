@@ -1,0 +1,16 @@
+{
+    "contents" : "packrat::init()\npackrat::status()\npackrat::clean()\n",
+    "created" : 1422281072722.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2693286840",
+    "id" : "D60D78D4",
+    "lastKnownWriteTime" : 1421331367,
+    "path" : "~/Dropbox/git_root/homework/homework1/.Rhistory",
+    "project_path" : ".Rhistory",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_history"
+}
